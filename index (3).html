@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CardChecker</title>
+     <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    <div class="card" id="app">
+
+        <!-- Здесь будет выводиться ЛОГОТИП БАНКА -->
+        <div  class="bank" >
+            <img :src="bankcheck">
+        </div>
+
+        <!-- Поле для ввода НОМЕРА КАРТЫ -->
+        <div class="number-container" >
+            <input type="text" v-model="cardNumber" v-bind:class="{ 'input-ok': isActive,'input-err': isActives }" v-on:click="toggle" placeholder="Номер карты">
+            <div class="status-ok"></div>
+        </div>
+
+        <!-- Поле для ввода ИМЕНИ ДЕРЖАТЕЛЯ -->
+        <div class="name-container">
+            <input type="text" placeholder="Имя держателя">
+            <div class="status"></div>
+        </div>
+
+        <!-- Логотип ПЛАТЕЖНОЙ СИСТЕМЫ -->
+        <div class="pay-system">
+            <img :src="paySys">
+        </div>
+
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    
+   new Vue({
+        
+       el:'#app',
+        data: {
+            cardNumber:"",
+            isActive:false,
+            isActives:false
+        },
+        methods:{
+            toggle: function(){
+               if (this.cardNumber.length == 16){
+                   this.isActive=true;
+                   this.isActives=false
+               }
+               else{
+                   this.isActive=false;
+                   this.isActives=true;
+               }
+            }
+        },
+        computed: {
+          paySys(){
+              
+              let firstNum = this.cardNumber[0];
+             
+              switch(firstNum){
+                  case '2':
+                      return 'img/systems/mir.png';
+                  case '3':
+                      return 'img/systems/american-exp.png';
+                  case '4':
+                      return 'img/systems/visa.png';
+                  case '5':
+                      return 'img/systems/mastercard.png';
+                  case '6':
+                      return 'img/systems/maestro.png';
+              }
+             
+          },
+          bankcheck(){
+              let num=this.cardNumber.substring(0,6);
+                switch(num){
+                    case'521178':return'img/banks/alpha.png';
+                    case'548673':return'img/banks/alpha.png'; 
+                    case'548601':return'img/banks/alpha.png'; 
+                    case'415428':return'img/banks/alpha.png'; 
+                    case'676371':return'img/banks/alpha.png';
+                    case'477964':return'img/banks/alpha.png'; 
+                    case'479004':return'img/banks/alpha.png'; 
+                    case'427229':return'img/banks/vtb.png'; 
+                    case'527883':return'img/banks/vtb.png'; 
+                    case'447520':return'img/banks/vtb.png'; 
+                        case'548999':return'img/banks/gazprombank.png'; 
+                        case'526483':return'img/banks/gazprombank.png'; 
+                        case'533736':return'img/banks/mts-bank.png'; 
+                        case'540616':return'img/banks/mts-bank.png'; 
+                        case'434146':return'img/banks/otkrytie.png'; 
+                        case'405870':return'img/banks/otkrytie.png'; 
+                        case'544573':return'img/banks/otkrytie.png'; 
+                        case'532301':return'img/banks/otkrytie.png'; 
+                        case'440503':return'img/banks/rosbank.png'; 
+                        case'554761':return'img/banks/rosbank.png'; 
+                        case'513691':return'img/banks/russian_standart.png'; 
+                        case'510047':return'img/banks/russian_standart.png';
+                        case'462730':return'img/banks/raiffaizen.png'; 
+                        case'462729':return'img/banks/raiffaizen.png'; 
+                        case'427683':return'img/banks/sberbank.png';
+                        case'427901':return'img/banks/sberbank.png';
+                        case'427644':return'img/banks/sberbank.png';
+                        case'427601':return'img/banks/sberbank.png';
+                        case'427901':return'img/banks/sberbank.png';
+                        case'427631':return'img/banks/sberbank.png';
+                        case'427638':return'img/banks/sberbank.png';
+                        case'546938':return'img/banks/sberbank.png';
+                    case'521324':return'img/banks/tinkoff.png';
+                        case'437773':return'img/banks/tinkoff.png';
+                        
+                        
+                }
+              
+              
+              
+              
+              
+              
+          }
+            
+
+        }
+        
+    });
+    
+</script>
+</html>
